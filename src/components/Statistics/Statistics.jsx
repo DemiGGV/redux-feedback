@@ -1,6 +1,7 @@
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
-export function Statistics({ good, neutral, bad, total, positivePercentage }) {
+export function Statistics() {
+  const { good, neutral, bad } = useSelector(state => state.feedback);
   return (
     <div>
       <p>
@@ -13,19 +14,12 @@ export function Statistics({ good, neutral, bad, total, positivePercentage }) {
         Bad: <span>{bad}</span>
       </p>
       <p>
-        Total: <span>{total}</span>
+        Total: <span>{good + neutral + bad}</span>
       </p>
       <p>
-        TotalPercent: <span>{positivePercentage}%</span>
+        TotalPercent:
+        <span> {Math.round((100 * good) / (good + neutral + bad))}%</span>
       </p>
     </div>
   );
 }
-
-Statistics.propTypes = {
-  good: PropTypes.number.isRequired,
-  neutral: PropTypes.number.isRequired,
-  bad: PropTypes.number.isRequired,
-  total: PropTypes.number.isRequired,
-  positivePercentage: PropTypes.number.isRequired,
-};

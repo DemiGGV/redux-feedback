@@ -1,15 +1,19 @@
-import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
 import { ContainerCSS, Button } from '../MainContainer';
+import { handleFeedback } from 'components/Redux/feedbackSlice';
 
-export function FeedbackOptions({ options, incrementField }) {
-  console.log(options);
+export function FeedbackOptions() {
+  const dispatch = useDispatch();
+  const feedback = useSelector(state => state.feedback);
   return (
     <ContainerCSS>
-      {Object.keys(options).map((option, index) => (
+      {Object.keys(feedback).map((option, index) => (
         <Button
           key={index}
           type="button"
-          onClick={() => incrementField(option)}
+          onClick={() => {
+            dispatch(handleFeedback(option));
+          }}
         >
           {option}
         </Button>
@@ -17,12 +21,3 @@ export function FeedbackOptions({ options, incrementField }) {
     </ContainerCSS>
   );
 }
-
-FeedbackOptions.propTypes = {
-  options: PropTypes.exact({
-    good: PropTypes.number.isRequired,
-    neutral: PropTypes.number.isRequired,
-    bad: PropTypes.number.isRequired,
-  }),
-  incrementField: PropTypes.func.isRequired,
-};
