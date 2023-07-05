@@ -1,7 +1,6 @@
 export const handleFeedback = val => {
   return {
     type: `feedback/${val}`,
-    payload: val,
   };
 };
 
@@ -17,17 +16,17 @@ export const feedbackReduser = (
     case 'feedback/good':
       return {
         ...state,
-        [action.payload]: ++state.good,
+        good: state.good + 1,
       };
     case 'feedback/neutral':
       return {
         ...state,
-        [action.payload]: ++state.neutral,
+        neutral: state.neutral + 1,
       };
     case 'feedback/bad':
       return {
         ...state,
-        [action.payload]: ++state.bad,
+        bad: state.bad + 1,
       };
     default:
       return state;
