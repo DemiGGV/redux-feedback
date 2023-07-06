@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { ContainerCSS, Button } from '../MainContainer';
-import { handleFeedback } from 'components/Redux/feedbackSlice';
+import { handleFeedback } from 'Redux/feedbackSlice';
 
 export function FeedbackOptions() {
   const dispatch = useDispatch();
